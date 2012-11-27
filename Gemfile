@@ -44,3 +44,4 @@ gem "hpricot", ">= 0.8.6", :group => :development
 gem "ruby_parser", ">= 3.0.1", :group => :development
 gem "bootstrap-sass", ">= 2.1.1.0"
 gem "devise", ">= 2.1.2"
+gem "quiet_assets", ">= 1.0.1", :group => :development

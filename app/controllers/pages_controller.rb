@@ -17,6 +17,7 @@ class PagesController < ApplicationController
 
     page.update_content(params[:content])
     page.save!
+    cookies['editing'] = false
     render text: ""
   end
   

@@ -12,3 +12,18 @@
   - if user_signed_in?
     %li
       = link_to_function "#{is_editing? ? 'Stop editing' : 'Edit'}", "document.cookie='editing=#{is_editing? ? 'false' : 'true'}';top.location.href=top.location.href"
+
+%ul.nav.pull-right
+  %li.dropdown
+    %a.dropdown-toggle(data-toggle="dropdown")
+      = image_tag("famfamfam_flag_icons/#{I18n.locale}.png", :style=>"margin-top: -6px; margin-bottom: -3px; margin-right: 0px")
+    %ul.dropdown-menu
+      %li
+        = link_to(localized_path(:fi)) do
+          = image_tag("famfamfam_flag_icons/fi.png", :style=>"margin-top: -6px; margin-bottom: -3px; margin-right: 0px", :alt=>"Finnish")
+          Finnish
+      %li
+        = link_to(localized_path(:en)) do
+          = image_tag("famfamfam_flag_icons/en.png", :style=>"margin-top: -6px; margin-bottom: -3px; margin-right: 0px", :alt=>"English")
+          English
+      

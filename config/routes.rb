@@ -8,10 +8,15 @@ Morcury::Application.routes.draw do
   devise_for :users, :controllers => { 
     :registrations => "users/registrations" }
 
+  # match 'change_locale' => 'application#change_locale',
+  # :as => :change_locale, :via => :get
+
+  match '/:locale' => "pages#show", :via => :get
+  match '/:locale' => "pages#mercury_update", :via => :put
   scope "(:locale)", :locale => /fi|en|\w{2}/ do
-    match '*slug' => 'pages#show', :via => :get
+    match '*slug' => 'pages#show', :via => :get, :as => :show_page
   end
   scope "(:locale)", :locale => /\w{2}/ do
-    match '*slug' => 'pages#mercury_update', :via => :put
+    match '*slug' => 'pages#mercury_update', :via => :put, :as => :update_page
   end
 end

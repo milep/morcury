@@ -1,0 +1,5 @@
+%h1#page_title(data-mercury="simple")<
+  = @page.get_content('page_title')
+#page_content(data-mercury="full")
+  = raw @page.get_content('page_content')
+

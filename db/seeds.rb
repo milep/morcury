@@ -8,5 +8,7 @@
 puts 'SETTING UP DEFAULT USER LOGIN'
 user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please'
 puts 'New user created: ' << user.name
-user2 = User.create! :name => 'Second User', :email => 'user2@example.com', :password => 'please', :password_confirmation => 'please'
-puts 'New user created: ' << user2.name
+root_page = Page.create! :slug => "/", :content => {"page_title"=>"front", "page_content"=>"content"}
+puts 'Root page created'
+info_page = Page.create! :slug => "info", :content => {"page_title"=>"info", "page_content"=>"content"}
+puts 'Info page created'

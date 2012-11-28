@@ -5,7 +5,8 @@ Morcury::Application.routes.draw do
 
   mount Mercury::Engine => '/'
 
-  devise_for :users
+  devise_for :users, :controllers => { 
+    :registrations => "users/registrations" }
 
   scope "(:locale)", :locale => /fi|en|\w{2}/ do
     match '*slug' => 'pages#show', :via => :get

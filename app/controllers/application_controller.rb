@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     # if params[:locale] is nil then I18n.default_locale will be used
-    Rails.logger.debug "set locale: #{params[:locale]}"
     I18n.locale = params[:locale]
   end
 

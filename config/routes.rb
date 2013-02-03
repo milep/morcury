@@ -1,19 +1,19 @@
 Morcury::Application.routes.draw do
   # get "pages/show"
-  root :to => "pages#show", :via => :get
-  root :to => "pages#mercury_update", :via => :put
+  get '/' => "pages#show"
+  put '/' => "pages#mercury_update"
 
   mount Mercury::Engine => '/'
 
   devise_for :users, :controllers => { 
     :registrations => "users/registrations" }
 
-  match '/:locale' => "pages#show", :via => :get
-  match '/:locale' => "pages#mercury_update", :via => :put
+  get '/:locale' => "pages#show"
+  put '/:locale' => "pages#mercury_update"
   scope "(:locale)", :locale => /fi|en|\w{2}/ do
-    match '*slug' => 'pages#show', :via => :get, :as => :show_page
+    get '*slug' => 'pages#show', :as => :show_page
   end
   scope "(:locale)", :locale => /\w{2}/ do
-    match '*slug' => 'pages#mercury_update', :via => :put, :as => :update_page
+    get '*slug' => 'pages#mercury_update', :as => :update_page
   end
 end

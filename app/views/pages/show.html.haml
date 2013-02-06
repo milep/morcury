@@ -1,5 +1,9 @@
-%h1#page_title(data-mercury="simple")<
-  = @page.get_content('page_title')
-#page_content(data-mercury="full")
-  = raw @page.get_content('page_content')
+.container(style="margin-top: 20px;")
+  .content
+    .row
+      .span12
+        %h1#page_title(data-mercury="simple")<
+          = @page.get_content('page_title')
+        #page_content(data-mercury="full")<
+          = raw @page.get_content('page_content')
 

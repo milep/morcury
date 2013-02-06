@@ -1,0 +1,22 @@
+- content_for :top do
+  .jumbotron
+    .container
+      #page_jumbotron(data-mercury="full")<
+        = raw @page.get_content('page_jumbotron')
+
+.container(style="margin-top: 20px;")
+  .row
+    .span12
+      .page-header
+        %h1#page_title(data-mercury="simple")<
+          = @page.get_content('page_title')
+
+  .row
+    .span6
+      #column1.well(data-mercury="full")<
+        = raw @page.get_content('column1')
+    .span6
+      #column2.well(data-mercury="full")<
+        = raw @page.get_content('column2')
+
+

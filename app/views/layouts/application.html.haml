@@ -13,15 +13,12 @@
       %nav.navbar-inner
         .container
           = render 'layouts/navigation'
+
+    = yield(:top)
+
     #main{:role => "main"}
-      .container
-        .content
-          .row
-            .span12
-              = render 'layouts/messages'
-              = yield
-          %footer
-      / ! end of .container
+      = yield
+
     / ! end of #main
     :javascript
       jQuery(parent).trigger('initialize:frame');

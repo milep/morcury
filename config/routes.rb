@@ -8,6 +8,9 @@ Morcury::Application.routes.draw do
     end
   end
 
+  get "pages/properties"
+  put "pages/update_properties"
+  
   # get "pages/show"
   root :to => 'pages#show', :via => :get
   put '/' => "pages#mercury_update"

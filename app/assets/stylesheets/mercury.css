@@ -20,5 +20,6 @@
  *= require_self
  *= require mercury/bootstrap-ish
  *= require mercury/mercury
+ *= require images
  */
 

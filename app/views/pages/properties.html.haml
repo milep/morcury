@@ -1,0 +1,7 @@
+.properties-panel
+  %p
+    Select page template
+  = form_tag(pages_update_properties_path, method: :put) do
+    = hidden_field_tag 'slug', params[:slug]
+    = select_tag('template', options_for_select(@options, @page.template))
+    = submit_tag 'Save'

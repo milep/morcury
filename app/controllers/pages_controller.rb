@@ -11,6 +11,7 @@ class PagesController < ApplicationController
                             'page_content' => {'value' => 'This page doesn\'t have content yet.'})
       end
     end
+    Rails.logger.debug "TEMPLATE: #{@page.template}"
     render template: "pages/#{@page.template || 'show'}"
   end
 
@@ -24,6 +25,23 @@ class PagesController < ApplicationController
 
     cookies['editing'] = false
     render text: ""
+  end
+
+  def properties
+    path_params = Rails.application.routes.recognize_path params[:path]
+    @page = current_site.pages.find_or_initialize_by(slug: path_params[:slug])
+    @options = []
+    @options << ['default', 'show']
+    @options << ['jumbotron and 2 columns', 'jumbotron_2cols']
+    render :properties, layout: false
+  end
+
+  def update_properties
+    page = current_site.pages.find_or_initialize_by(slug: params[:slug])
+    authorize! :update, page
+    page.template = params[:template]
+    page.save!
+    redirect_to "/#{I18n.locale}/#{page.slug}"
   end
   
   private

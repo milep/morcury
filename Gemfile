@@ -18,4 +18,5 @@ gem "devise", ">= 2.1.2"
 gem "cancan", ">= 1.6.8"
 gem 'mercury-rails', ">= 0.9.0"
 gem 'simple_form', '>= 2.0.4'
-
+gem 'mini_magick', '>= 3.4'
+gem "carrierwave-mongoid", "~> 0.4.0", :require => 'carrierwave/mongoid'

@@ -25,7 +25,10 @@
  *
  * Require any files you want to use that either extend, or change the default Mercury behavior.
  * require mercury_overrides
+
+ *= require page-properties.js
  */
+
 window.Mercury = {
 
   // # Mercury Configuration

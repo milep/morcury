@@ -1,5 +1,5 @@
 - content_for :top do
-  .jumbotron
+  .jumbotron(style="#{@page.styles['page_jumbotron_style']}")
     .container
       #page_jumbotron(data-mercury="full")<
         = raw @page.get_content('page_jumbotron')

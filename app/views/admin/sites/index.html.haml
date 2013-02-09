@@ -1,4 +1,14 @@
-%h1 Admin::Sites#index
-%p Find me in app/views/admin/sites/index.html.haml
-
+%h1 Sites
 = link_to "New site", new_admin_site_path, class: 'btn btn-primary'
+%hr
+%table.table.table-condensed
+  %thead
+    %tr
+      %th= Site.human_attribute_name :domains
+      %th
+  %tbody
+    - @sites.each do |site|
+      %tr
+        %td= site.domains.join(', ')
+        %td= link_to('images', admin_site_images_path(site))
+

@@ -4,6 +4,7 @@ class Page
   field :slug, type: String
   field :template, type: String
   field :content, type: Hash, localize: true, default: {}
+  field :styles, type: Hash, default: {}
 
   embedded_in :site
 

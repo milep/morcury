@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   layout :layout_with_mercury
   helper_method :is_editing?
-  before_filter :authenticate_user!, only: [:mercury_update]
+  before_filter :authenticate_user!, except: [:show]
 
   def show
     params[:slug] ||= '/'
@@ -11,8 +11,8 @@ class PagesController < ApplicationController
                             'page_content' => {'value' => 'This page doesn\'t have content yet.'})
       end
     end
-    Rails.logger.debug "TEMPLATE: #{@page.template}"
-    render template: "pages/#{@page.template || 'show'}"
+
+    render template: "pages/#{@page.template || 'default'}"
   end
 
   def mercury_update
@@ -28,18 +28,20 @@ class PagesController < ApplicationController
   end
 
   def properties
+    @site = current_site
     path_params = Rails.application.routes.recognize_path params[:path]
     @page = current_site.pages.find_or_initialize_by(slug: path_params[:slug])
     @options = []
-    @options << ['default', 'show']
+    @options << ['default', 'default']
     @options << ['jumbotron and 2 columns', 'jumbotron_2cols']
-    render :properties, layout: false
+    render '/mercury/properties', layout: false
   end
 
   def update_properties
     page = current_site.pages.find_or_initialize_by(slug: params[:slug])
     authorize! :update, page
     page.template = params[:template]
+    page.styles['page_jumbotron_style'] = params[:page_jumbotron_style]
     page.save!
     redirect_to "/#{I18n.locale}/#{page.slug}"
   end

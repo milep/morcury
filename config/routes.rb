@@ -4,7 +4,9 @@ Morcury::Application.routes.draw do
     constraints :domain => 'localhost' do
       get '/' => 'home#index'
 
-      resources :sites
+      resources :sites do
+        resources :images
+      end
     end
   end
 

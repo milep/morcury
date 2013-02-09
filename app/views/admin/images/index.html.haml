@@ -1,0 +1,19 @@
+%h1 images
+= form_tag(admin_site_images_path(@site), :multipart => true) do
+  = label_tag 'image[file]', 'Upload image'
+  = file_field_tag 'image[file]'
+  = submit_tag 'Save'
+
+%hr
+%table.table.table-condensed
+  %thead
+    %tr
+      %th
+      %th= Image.human_attribute_name :file
+  %tbody
+    - @images.each do |image|
+      %tr
+        %td= image_tag(image.file.thumb.url)
+        %td= image.file.url
+
+

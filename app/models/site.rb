@@ -3,6 +3,7 @@ class Site
   field :domains, type: Array
 
   embeds_many :pages
+  embeds_many :images
   has_and_belongs_to_many :users
   
   attr_accessible :domains

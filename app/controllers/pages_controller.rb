@@ -15,6 +15,18 @@ class PagesController < ApplicationController
     render template: "pages/#{@page.template || 'default'}"
   end
 
+  def index
+    @site = current_site
+
+    render '/mercury/pages', layout: false
+  end
+
+  def create
+    page = current_site.pages.create(params[:page])
+    
+    redirect_to "/#{I18n.locale}/#{page.slug}"
+  end
+
   def mercury_update
     params[:slug] ||= '/'
     page = current_site.pages.find_or_initialize_by(slug: params[:slug])
@@ -45,12 +57,20 @@ class PagesController < ApplicationController
     page.save!
     redirect_to "/#{I18n.locale}/#{page.slug}"
   end
-  
-  private
-  def current_site
-    site = Site.find_for_request(request)
+
+  def move_down
+    page = current_site.pages.find(params[:id])
+    page.move_down!
+    redirect_to "/#{I18n.locale}/#{page.slug}"
   end
 
+  def move_up
+    page = current_site.pages.find(params[:id])
+    page.move_up!
+    redirect_to "/#{I18n.locale}/#{page.slug}"
+  end
+  
+  private
   def layout_with_mercury
     !params[:mercury_frame] && is_editing? ? 'mercury' : 'application'
   end

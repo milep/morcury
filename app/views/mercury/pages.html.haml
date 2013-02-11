@@ -1,0 +1,23 @@
+.pages-panel
+  %p
+    Pages
+  = form_for(:page, url: pages_path) do |f|
+    = f.label :title
+    = f.text_field :title
+    = f.label :slug
+    = f.text_field :slug
+    = submit_tag 'Create'
+  %table
+    %tr
+      %th
+      %th Slug
+      %th Title
+    - @site.pages.asc(:order).each do |page|
+      %tr
+        %td
+          = link_to 'up', pages_move_down_path(page), method: :put
+          = link_to 'down', pages_move_up_path(page), method: :put
+        %td
+          = page.slug
+        %td
+          = page.title

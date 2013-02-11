@@ -26,6 +26,7 @@
  * Require any files you want to use that either extend, or change the default Mercury behavior.
  * require mercury_overrides
 
+ *= require jquery_ujs
  *= require page-properties.js
  */
 
@@ -108,6 +109,7 @@ window.Mercury = {
         insertTable:           ['Table', 'Insert Table', { modal: '/mercury/modals/table.html', regions: ['full', 'markdown'] }],
         insertCharacter:       ['Character', 'Special Characters', { modal: '/mercury/modals/character.html', regions: ['full', 'markdown'] }],
         pageProperties:        ['Properties', 'Page properties', { panel: function() {return '/pages/properties?path=' + encodeURIComponent(window.location.pathname);}}],
+        pages:                 ['Pages', 'Pages', { panel: function() {return '/pages/index';}}],
         sep2:                  ' '
         // snippetPanel:          ['Snippet', 'Snippet Panel', { panel: '/mercury/panels/snippets.html' }],
         // sep2:                  ' ',

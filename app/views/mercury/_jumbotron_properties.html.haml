@@ -1,4 +1,4 @@
 = label_tag 'jumbotron_background', 'Jumbotron background'
-= select_tag('jumbotron_background', options_from_collection_for_select(@site.images, 'file', 'file_identifier'), :include_blank => true, :onchange => 'window.Mercury.Custom.change_jumbotron_background(this)')
+= select_tag('jumbotron_background', options_from_collection_for_select(@site.images, 'file', 'file_identifier'), :include_blank => true, :onchange => 'window.Mercury.Page.change_jumbotron_background(this)')
 = text_field_tag 'page_jumbotron_style', @page.styles['page_jumbotron_style']
 

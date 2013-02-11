@@ -1,7 +1,8 @@
 = link_to "Morcury", root_path, :class => 'brand'
 %ul.nav
-  %li
-    = link_to "Info", show_page_path(I18n.locale, "info")
+  - current_site.pages.where(:order.gt => 0).asc(:order).each do |page|
+    %li
+      = link_to page.title, show_page_path(I18n.locale, page.slug)
   - if user_signed_in?
     %li
       = link_to 'Logout', destroy_user_session_path, :method=>'delete'

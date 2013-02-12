@@ -1,7 +1,7 @@
 Morcury::Application.routes.draw do
 
   namespace :admin do
-    constraints :domain => 'localhost' do
+    constraints :domain => Figaro.env.admin_domain do
       get '/' => 'home#index'
 
       resources :sites do

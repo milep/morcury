@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   layout :layout_with_mercury
-  helper_method :is_editing?
   before_filter :authenticate_user!, except: [:show]
 
   def show
@@ -75,8 +74,4 @@ class PagesController < ApplicationController
   def layout_with_mercury
     !params[:mercury_frame] && is_editing? ? 'mercury' : 'application'
   end
-  
-  def is_editing?
-    cookies[:editing] == 'true' && user_signed_in?
-  end  
 end

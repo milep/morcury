@@ -1,7 +1,7 @@
 Morcury::Application.routes.draw do
 
   namespace :admin do
-    constraints :domain => Figaro.env.admin_domain do
+    constraints :host => Figaro.env.admin_domain do
       get '/' => 'home#index'
 
       resources :sites do
@@ -24,7 +24,9 @@ Morcury::Application.routes.draw do
   mount Mercury::Engine => '/'
 
   devise_for :users, :controllers => { 
-    :registrations => "users/registrations" }
+    :registrations => "users/registrations",
+    :sessions => "users/sessions"
+  }
 
   get '/(:locale)' => "pages#show", :locale => /\w{2}/
   put '/(:locale)' => "pages#mercury_update", :locale => /\w{2}/

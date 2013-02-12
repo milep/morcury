@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   protect_from_forgery
   helper_method :current_site
+  helper_method :is_editing?
   
   def set_locale
     # if params[:locale] is nil then I18n.default_locale will be used
@@ -12,4 +13,7 @@ class ApplicationController < ActionController::Base
     Site.find_for_request(request)
   end
 
+  def is_editing?
+    cookies[:editing] == 'true' && user_signed_in?
+  end  
 end

@@ -74,3 +74,6 @@ pickle-email-*.html
 **.swp
 
 /public/uploads/*
+
+# Ignore application configuration
+/config/application.yml

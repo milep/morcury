@@ -10,6 +10,9 @@ class Site
 
   def self.find_for_request(request)
     site = where(domains: request.host).first
+    if !site && request.host == Figaro.env.admin_domain
+      site = Site.find_or_create_by(domains: ['admin'])
+    end
     raise Mongoid::Errors::DocumentNotFound.new(self, "domains" => request.host) unless site
     site
   end

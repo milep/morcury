@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_site
-    site = Site.find_for_request(request)
+    Site.find_for_request(request)
   end
 
 end

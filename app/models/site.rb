@@ -1,6 +1,7 @@
 class Site
   include Mongoid::Document
   field :domains, type: Array
+  field :title, type: String
 
   embeds_many :pages
   embeds_many :images

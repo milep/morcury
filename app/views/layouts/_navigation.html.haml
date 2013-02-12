@@ -1,4 +1,4 @@
-= link_to "Morcury", root_path, :class => 'brand'
+= link_to (current_site.title || "Morcury"), root_path, :class => 'brand'
 %ul.nav
   - current_site.pages.where(:order.gt => 0).asc(:order).each do |page|
     %li

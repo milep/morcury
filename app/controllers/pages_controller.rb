@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
 
   def show
-    params[:slug] ||= '/'
+    params[:slug] = '/' if params[:slug].blank?
     @page = current_site.pages.find_or_initialize_by(slug: params[:slug]).tap do |page|
       if page.new_record?
         page.update_content('page_title' => {'value' => 'No content'},
@@ -27,7 +27,7 @@ class PagesController < ApplicationController
   end
 
   def mercury_update
-    params[:slug] ||= '/'
+    params[:slug] = '/' if params[:slug].blank?
     page = current_site.pages.find_or_initialize_by(slug: params[:slug])
     authorize! :update, page
     
@@ -41,6 +41,7 @@ class PagesController < ApplicationController
   def properties
     @site = current_site
     path_params = Rails.application.routes.recognize_path params[:path]
+    path_params[:slug] = '/' if path_params[:slug].blank?
     @page = current_site.pages.find_or_initialize_by(slug: path_params[:slug])
     @options = []
     @options << ['default', 'default']
@@ -50,24 +51,28 @@ class PagesController < ApplicationController
   end
 
   def update_properties
+    params[:slug] = '/' if params[:slug].blank?
     page = current_site.pages.find_or_initialize_by(slug: params[:slug])
     authorize! :update, page
     page.template = params[:template]
     page.styles['page_jumbotron_style'] = params[:page_jumbotron_style]
     page.save!
-    redirect_to "/#{I18n.locale}/#{page.slug}"
+    slug = page.slug == '/' ? '' : page.slug
+    redirect_to "/#{I18n.locale}/#{slug}"
   end
 
   def move_down
     page = current_site.pages.find(params[:id])
     page.move_down!
-    redirect_to "/#{I18n.locale}/#{page.slug}"
+    slug = page.slug == '/' ? '' : page.slug
+    redirect_to "/#{I18n.locale}/#{slug}"
   end
 
   def move_up
     page = current_site.pages.find(params[:id])
     page.move_up!
-    redirect_to "/#{I18n.locale}/#{page.slug}"
+    slug = page.slug == '/' ? '' : page.slug
+    redirect_to "/#{I18n.locale}/#{slug}"
   end
   
   private

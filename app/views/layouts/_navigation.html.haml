@@ -5,12 +5,6 @@
       = link_to page.title, show_page_path(I18n.locale, page.slug)
   - if user_signed_in?
     %li
-      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-  - else
-    %li
-      = link_to 'Login', new_user_session_path
-  - if user_signed_in?
-    %li
       = link_to 'Edit account', edit_user_registration_path
   - if user_signed_in?
     %li
@@ -29,4 +23,10 @@
         = link_to(localized_path(:en)) do
           = image_tag("famfamfam_flag_icons/en.png", :style=>"margin-top: -6px; margin-bottom: -3px; margin-right: 0px", :alt=>"English")
           English
+  - if user_signed_in?
+    %li
+      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+  - else
+    %li
+      = link_to 'Login', new_user_session_path
       

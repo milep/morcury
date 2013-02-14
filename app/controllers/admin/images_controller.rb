@@ -13,4 +13,11 @@ class Admin::ImagesController < ApplicationController
     image.save!
     redirect_to admin_site_images_path(site)
   end
+
+  def upload
+    image = current_site.images.build params[:image]
+    image.save!
+    #{image: {url: '[your provided url]'}
+    render json: {image: {url: image.file.url}}
+  end
 end

@@ -19,7 +19,8 @@ Morcury::Application.routes.draw do
 
   root :to => 'pages#show', :via => :get
   put '/' => "pages#update_content"
-
+  post '/mercury/images' => 'admin/images#upload'
+  
   mount Mercury::Engine => '/'
 
   devise_for :users, :controllers => { 
@@ -28,12 +29,12 @@ Morcury::Application.routes.draw do
   }
 
   get '/(:locale)' => "pages#show", :locale => /\w{2}/
-  put '/(:locale)' => "pages#mercury_update", :locale => /\w{2}/
+  put '/(:locale)' => "pages#update_content", :locale => /\w{2}/
   scope "(:locale)", :locale => /\w{2}/ do
     get '*slug' => 'pages#show', :as => :show_page
   end
   scope "(:locale)", :locale => /\w{2}/ do
-    put '*slug' => 'pages#mercury_update', :as => :update_page
+    put '*slug' => 'pages#update_content', :as => :update_page
   end
 
 end

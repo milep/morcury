@@ -26,6 +26,12 @@ class PagesController < ApplicationController
     redirect_to "/#{I18n.locale}/#{page.slug}"
   end
 
+  def destroy
+    page = current_site.pages.find(params[:id])
+    page.destroy
+    redirect_to root_path
+  end
+
   def mercury_update
     params[:slug] = '/' if params[:slug].blank?
     page = current_site.pages.find_or_initialize_by(slug: params[:slug])

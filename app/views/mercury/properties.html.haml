@@ -1,7 +1,7 @@
 .properties-panel
   %p
     Select page template
-  = form_tag(pages_update_properties_path, method: :put) do
+  = form_tag(update_properties_pages_path, method: :put) do
     = hidden_field_tag 'slug', @page.slug
     = select_tag('template', options_for_select(@options, @page.template))
     = render "/mercury/#{@page.template || 'default'}_properties"

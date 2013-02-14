@@ -10,14 +10,13 @@ Morcury::Application.routes.draw do
     end
   end
 
-  get "pages/index"
-  get "pages/properties"
-  put "pages/update_properties"
-  put "pages/move_up/:id" => "pages#move_up", :as => :pages_move_up
-  put "pages/move_down/:id" => "pages#move_down", :as => :pages_move_down
-  post "pages" => "pages#create", :as => :pages
-  
-  # get "pages/show"
+  resources :pages do
+    get 'properties', :on => :collection
+    put 'update_properties', :on => :collection
+    put 'move_up', :on => :member
+    put 'move_down', :on => :member
+  end
+
   root :to => 'pages#show', :via => :get
   put '/' => "pages#mercury_update"
 

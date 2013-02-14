@@ -18,7 +18,7 @@ Morcury::Application.routes.draw do
   end
 
   root :to => 'pages#show', :via => :get
-  put '/' => "pages#mercury_update"
+  put '/' => "pages#update_content"
 
   mount Mercury::Engine => '/'
 

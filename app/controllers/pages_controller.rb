@@ -32,7 +32,7 @@ class PagesController < ApplicationController
     redirect_to root_path
   end
 
-  def mercury_update
+  def update_content
     params[:slug] = '/' if params[:slug].blank?
     page = current_site.pages.find_or_initialize_by(slug: params[:slug])
     authorize! :update, page

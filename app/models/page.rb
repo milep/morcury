@@ -11,7 +11,11 @@ class Page
   embedded_in :site
 
   before_create do
-    self.order = self.site.pages.desc(:order).first.order + 1
+    if self.site.pages.length > 1
+      self.order = self.site.pages.desc(:order).first.order + 1
+    else
+      self.order = 0
+    end
   end
   
   def get_content(key)

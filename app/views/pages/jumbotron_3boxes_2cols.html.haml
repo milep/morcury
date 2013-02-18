@@ -1,39 +1,39 @@
 - content_for :top do
   .jumbotron(style="#{@page.styles['page_jumbotron_style']}")
     .container
-      #page_jumbotron(data-mercury="full")<
+      #page_jumbotron(data-mercury="full" data-content-store="page")<
         = raw @page.get_content('page_jumbotron')
 
 .container(style="margin-top: 20px;")
   .row
     .span12
       .page-header
-        %h1#page_title1(data-mercury="simple")<
+        %h1#page_title1(data-mercury="simple" data-content-store="page")<
           = @page.get_content('page_title1')
 
   .row
     .span4
-      #box1.well(data-mercury="full")<
+      #box1.well(data-mercury="full" data-content-store="page")<
         = raw @page.get_content('box1')
     .span4
-      #box2.well(data-mercury="full")<
+      #box2.well(data-mercury="full" data-content-store="page")<
         = raw @page.get_content('box2')
     .span4
-      #box3.well(data-mercury="full")<
+      #box3.well(data-mercury="full" data-content-store="page")<
         = raw @page.get_content('box3')
 
   .row
     .span12
       .page-header
-        %h1#page_title2(data-mercury="simple")<
+        %h1#page_title2(data-mercury="simple" data-content-store="page")<
           = @page.get_content('page_title2')
 
   .row
     .span6
-      #column1.well(data-mercury="full")<
+      #column1.well(data-mercury="full" data-content-store="page")<
         = raw @page.get_content('column1')
     .span6
-      #column2.well(data-mercury="full")<
+      #column2.well(data-mercury="full" data-content-store="page")<
         = raw @page.get_content('column2')
 
 

@@ -24,10 +24,11 @@ class Page
 
   def update_content(data)
     #TODO validate data length.
-    new_content = data.map do |key, value|
-      [key, value['value']]
+    new_content = data.inject({}) do |memo, (key, value)|
+      memo[key] = value['value'] if value['data'] && value['data']['content-store'] == 'page'
+      memo
     end
-    self.content = Hash[*new_content.flatten]
+    self.content = new_content
   end
 
   def move_down!

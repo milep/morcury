@@ -224,7 +224,7 @@ window.Mercury = {
     regions: {
       attribute: 'data-mercury',
       identifier: 'id',
-      dataAttributes: []
+      dataAttributes: ['content-store', 'snippet-key']
       // determineType: function(region){},
       },
 

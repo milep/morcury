@@ -2,8 +2,8 @@
   .content
     .row
       .span12
-        %h1#page_title(data-mercury="simple")<
+        %h1#page_title(data-mercury="simple" data-content-store="page")<
           = @page.get_content('page_title')
-        #page_content(data-mercury="full")<
+        #page_content(data-mercury="full" data-content-store="page")<
           = raw @page.get_content('page_content')
 

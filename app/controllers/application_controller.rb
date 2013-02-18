@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_site
-    Site.find_for_request(request)
+    @current_site ||= Site.find_for_request(request)
   end
 
   def is_editing?

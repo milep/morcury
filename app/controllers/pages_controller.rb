@@ -40,6 +40,9 @@ class PagesController < ApplicationController
     page.update_content(params[:content])
     page.save!
 
+    current_site.update_snippets(params[:content])
+    current_site.save!
+
     cookies['editing'] = false
     render text: ""
   end
@@ -83,6 +86,7 @@ class PagesController < ApplicationController
   
   private
   def layout_with_mercury
-    !params[:mercury_frame] && is_editing? ? 'mercury' : 'application'
+    page_layout = current_site.layout || 'application'
+    !params[:mercury_frame] && is_editing? ? 'mercury' : page_layout
   end
 end

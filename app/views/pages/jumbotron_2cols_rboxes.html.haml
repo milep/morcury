@@ -1,0 +1,20 @@
+- content_for :top do
+  .jumbotron.masthead(style="#{@page.styles['page_jumbotron_style']}")
+    .container
+      #page_jumbotron(data-mercury="full" data-content-store="page")<
+        = raw @page.get_content('page_jumbotron')
+
+.container(style="margin-top: 20px;")
+  .row
+    .span6
+      #column1(data-mercury="full" data-content-store="page")<
+        = raw @page.get_content('column1')
+    .span6
+      #box1.well(data-mercury="full" data-content-store="page")<
+        = raw @page.get_content('box1')
+      #box2.well(data-mercury="full" data-content-store="page")<
+        = raw @page.get_content('box2')
+      #box3.well(data-mercury="full" data-content-store="page")<
+        = raw @page.get_content('box3')
+
+

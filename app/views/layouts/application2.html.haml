@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %title= content_for?(:title) ? yield(:title) : "Morcury"
+    %meta{:content => content_for?(:description) ? yield(:description) : "Morcury", :name => "description"}
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    :css
+      .footer {
+        background-color: #f5f5f5;
+        text-shadow: 1px 1px 1px #fff;
+        color: #666666;
+        margin-top: 40px;
+        padding-top: 40px;
+        border-top: 1px solid #e5e5e5;
+        padding-bottom: 40px;
+        text-align: center;
+      }
+
+      .footer p {
+        margin-bottom: 0;
+        color: #777;
+      }
+
+    = yield(:head)
+  %body
+    %header.navbar.navbar-fixed-top
+      %nav.navbar-inner
+        .container
+          = render 'layouts/navigation'
+
+    = yield(:top)
+
+    #main{:role => "main"}
+      = yield
+
+    .footer#footer(data-mercury="full" data-content-store="snippet" data-snippet-key="body")<
+      = raw current_site.snippets.find_by(name: 'footer').get_content('body')
+
+    :javascript
+      jQuery(parent).trigger('initialize:frame');

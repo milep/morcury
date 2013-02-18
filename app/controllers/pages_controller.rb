@@ -56,6 +56,7 @@ class PagesController < ApplicationController
     @options << ['default', 'default']
     @options << ['jumbotron and 2 columns', 'jumbotron_2cols']
     @options << ['jumbotron, 3 boxes, 2 columns', 'jumbotron_3boxes_2cols']
+    @options << ['jumbotron, 2 columns, boxes on right', 'jumbotron_2cols_rboxes']
     render '/mercury/properties', layout: false
   end
 

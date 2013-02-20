@@ -1,0 +1,15 @@
+%h1 Snippets
+= link_to "New snippet", new_admin_site_snippet_path(@site), class: 'btn btn-primary'
+
+%hr
+%table.table.table-condensed
+  %thead
+    %tr
+      %th= Snippet.human_attribute_name :name
+      %th= Snippet.human_attribute_name :content
+  %tbody
+    - @snippets.each do |snippet|
+      %tr
+        %td= link_to snippet.name, edit_admin_site_snippet_path(@site, snippet)
+        %td= snippet.content_translations
+

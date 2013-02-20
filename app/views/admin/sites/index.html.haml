@@ -9,6 +9,9 @@
   %tbody
     - @sites.each do |site|
       %tr
-        %td= site.domains.join(', ')
-        %td= link_to('images', admin_site_images_path(site))
+        %td= site.domains_string
+        %td
+          = link_to 'images', admin_site_images_path(site)
+          = link_to 'snippets', admin_site_snippets_path(site)
+          = link_to 'edit', edit_admin_site_path(site), :class => "btn btn-mini"
 

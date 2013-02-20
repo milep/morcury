@@ -7,22 +7,8 @@
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-    :css
-      .footer {
-        background-color: #f5f5f5;
-        text-shadow: 1px 1px 1px #fff;
-        color: #666666;
-        margin-top: 40px;
-        padding-top: 40px;
-        border-top: 1px solid #e5e5e5;
-        padding-bottom: 40px;
-        text-align: center;
-      }
-
-      .footer p {
-        margin-bottom: 0;
-        color: #777;
-      }
+    
+    = raw current_site.html_head
 
     = yield(:head)
   %body
@@ -37,7 +23,7 @@
       = yield
 
     .footer#footer(data-mercury="full" data-content-store="snippet" data-snippet-key="body")<
-      = raw current_site.snippets.find_by(name: 'footer').get_content('body')
+      = raw current_site.snippets.find_or_initialize_by(name: 'footer').get_content('body')
 
     :javascript
       jQuery(parent).trigger('initialize:frame');

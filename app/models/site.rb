@@ -3,14 +3,16 @@ class Site
   field :domains, type: Array
   field :title, type: String
   field :layout, type: String
+  field :html_head, type: String
   
   embeds_many :pages
   embeds_many :snippets, as: :snippet_container
   embeds_many :images
   has_and_belongs_to_many :users
-  
-  attr_accessible :domains
 
+  attr_accessor :domains_string
+  attr_accessible :domains, :title, :layout, :html_head, :domains_string
+  
   def self.find_for_request(request)
     site = where(domains: request.host).first
     if !site && request.host == Figaro.env.admin_domain
@@ -20,16 +22,15 @@ class Site
     site
   end
 
-  def domains=(value)
-    case value
-    when Array
-      write_attribute(:domains, value)
-    when String
-      arr = value.split(',').map(&:strip)
-      write_attribute(:domains, arr)
-    end
+  def domains_string
+    read_attribute(:domains).join(", ")
   end
 
+  def domains_string=(value)
+    arr = value.split(',').map(&:strip)
+    write_attribute(:domains, arr)
+  end
+  
   def update_snippets(data)
     snippet_contents = data.inject({}) do |memo, (key, value)|
       if value['data'] && value['data']['content-store'] == 'snippet'

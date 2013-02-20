@@ -1,5 +1,8 @@
 = simple_form_for([:admin, @site], :html => {:class => 'form-horizontal' }) do |f|
-  = f.input :domains
+  = f.input :domains_string
+  = f.input :title
+  = f.input :layout
+  = f.input :html_head, :as => :text
 
   .form-actions
     = link_to t("back"), admin_sites_path, :class => "btn btn-warning"

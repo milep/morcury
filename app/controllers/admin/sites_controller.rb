@@ -23,6 +23,18 @@ class Admin::SitesController < ApplicationController
       end
     end
   end
+
+  def update
+    respond_to do |format|
+      if @site.update_attributes(params[:site])
+        format.html { redirect_to admin_sites_path, notice: 'Site was successfully updated.' }
+        format.json { render json: @site, status: :created, location: @site }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @site.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   
   def edit
   end

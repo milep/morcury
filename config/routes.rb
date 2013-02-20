@@ -6,6 +6,7 @@ Morcury::Application.routes.draw do
 
       resources :sites do
         resources :images
+        resources :snippets
       end
     end
   end

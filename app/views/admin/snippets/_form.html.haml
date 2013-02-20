@@ -1,0 +1,10 @@
+= simple_form_for([:admin, @site, @snippet], :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :name
+  .control-group.string.optional
+    = label_tag 'snippet[content][body]', 'Body', :class => "string optional control-label"
+    .controls
+      = text_area_tag 'snippet[content][body]', @snippet.content['body'], :rows => "15", :class => "string optional", :style => "width: 400px;"
+
+  .form-actions
+    = link_to t("back"), admin_site_snippets_path, :class => "btn btn-warning"
+    = f.button :submit, :class => "btn btn-success"

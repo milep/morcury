@@ -15,7 +15,38 @@
     %header.navbar.navbar-fixed-top
       %nav.navbar-inner
         .container
-          = render 'layouts/navigation'
+          = link_to root_path, :class => 'brand' do
+            - unless current_site.small_logo_url.blank?
+              = image_tag current_site.small_logo_url, :style => 'margin-top: -10px;'
+            - else
+              #{current_site.title}
+          %ul.nav
+            - current_site.pages.where(:order.gt => 0).asc(:order).each do |page|
+              %li
+                = link_to page.title, show_page_path(I18n.locale, page.slug)
+            - if user_signed_in?
+              %li
+                = link_to 'Edit account', edit_user_registration_path
+            - if user_signed_in?
+              %li
+                = link_to_function "#{is_editing? ? 'Stop editing' : 'Edit'}", "document.cookie='editing=#{is_editing? ? 'false' : 'true'}';top.location.href=top.location.href"
+          
+          %ul.nav.pull-right
+            %li.dropdown
+              %a.dropdown-toggle(data-toggle="dropdown")
+                = image_tag("famfamfam_flag_icons/#{I18n.locale}.png", :style=>"margin-top: -6px; margin-bottom: -3px; margin-right: 0px")
+              %ul.dropdown-menu
+                %li
+                  = link_to(localized_path(:fi)) do
+                    = image_tag("famfamfam_flag_icons/fi.png", :style=>"margin-top: -6px; margin-bottom: -3px; margin-right: 0px", :alt=>"Finnish")
+                    Finnish
+                %li
+                  = link_to(localized_path(:en)) do
+                    = image_tag("famfamfam_flag_icons/en.png", :style=>"margin-top: -6px; margin-bottom: -3px; margin-right: 0px", :alt=>"English")
+                    English
+            - if user_signed_in?
+              %li
+                = link_to 'Logout', destroy_user_session_path, :method=>'delete'
 
     = yield(:top)
 

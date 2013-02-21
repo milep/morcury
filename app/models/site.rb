@@ -4,6 +4,7 @@ class Site
   field :title, type: String
   field :layout, type: String
   field :html_head, type: String
+  field :small_logo_url, type: String
   
   embeds_many :pages
   embeds_many :snippets, as: :snippet_container

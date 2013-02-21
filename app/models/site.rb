@@ -1,6 +1,6 @@
 class Site
   include Mongoid::Document
-  field :domains, type: Array
+  field :domains, type: Array, default: []
   field :title, type: String
   field :layout, type: String
   field :html_head, type: String

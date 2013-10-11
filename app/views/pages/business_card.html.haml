@@ -1,0 +1,7 @@
+.container(style="margin-top: 20px;")
+  .content
+    .row
+      .span12.transparent-bg
+        #page_content(data-mercury="full" data-content-store="page")<
+          = raw @page.get_content('page_content')
+

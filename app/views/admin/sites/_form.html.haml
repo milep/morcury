@@ -2,7 +2,7 @@
   = f.input :domains_string
   = f.input :title
   = f.input :layout
-  = f.input :html_head, :as => :text
+  = f.input :html_head, :as => :text, :input_html => {:class => 'edit'}
 
   .form-actions
     = link_to t("back"), admin_sites_path, :class => "btn btn-warning"

@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %title= content_for?(:title) ? yield(:title) : (current_site.title || "Morcury")
+    %meta{:content => content_for?(:description) ? yield(:description) : "Morcury", :name => "description"}
+    = stylesheet_link_tag "business_card", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = yield(:head)
+    = raw current_site.html_head
+  %body{:class => "#{controller_name} #{action_name}"}
+
+    #main{:role => "main"}
+      = yield
+
+  .edit-link
+    - if user_signed_in?
+      = link_to_function "#{is_editing? ? 'Stop editing' : 'Edit'}", "document.cookie='editing=#{is_editing? ? 'false' : 'true'}';top.location.href=top.location.href"
+
+    / ! end of #main
+    :javascript
+      jQuery(parent).trigger('initialize:frame');

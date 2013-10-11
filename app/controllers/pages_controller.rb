@@ -10,7 +10,7 @@ class PagesController < ApplicationController
                             'page_content' => {'value' => 'This page doesn\'t have content yet.'})
       end
     end
-
+    Rails.logger.debug "render template: <pages/#{@page.template || 'default'}>"
     render template: "pages/#{@page.template || 'default'}"
   end
 
@@ -54,6 +54,7 @@ class PagesController < ApplicationController
     @page = current_site.pages.find_or_initialize_by(slug: path_params[:slug])
     @options = []
     @options << ['default', 'default']
+    @options << ['business card', 'business_card']
     @options << ['jumbotron and 2 columns', 'jumbotron_2cols']
     @options << ['jumbotron, 3 boxes, 2 columns', 'jumbotron_3boxes_2cols']
     @options << ['jumbotron, 2 columns, boxes on right', 'jumbotron_2cols_rboxes']
